@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@ComponentScan(value = { "com.happy.payapi" })
+@ComponentScan(value = { "com.happy.payapi.*" })
 @EnableScheduling
 public class MainApplication {
 	public static void main(String[] args) {
