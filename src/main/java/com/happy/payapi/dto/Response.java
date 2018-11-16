@@ -5,7 +5,7 @@ public class Response<T> {
 
 	private String msg;
 
-	private T t;
+	private T data;
 
 	public String getCode() {
 		return code;
@@ -27,12 +27,12 @@ public class Response<T> {
 		super();
 	}
 
-	public T getT() {
-		return t;
+	public T getData() {
+		return data;
 	}
 
-	public void setT(T t) {
-		this.t = t;
+	public void setData(T data) {
+		this.data = data;
 	}
 
 	public Response(String code, String msg) {
@@ -41,12 +41,12 @@ public class Response<T> {
 		this.msg = msg;
 	}
 
-	public Response(T t) {
+	public Response(T data) {
 		super();
-		if (t != null) {
+		if (data != null) {
 			this.code = "0";
 			this.msg = "成功";
-			this.t = t;
+			this.data = data;
 		} else {
 			this.code = "1";
 			this.msg = "失败";

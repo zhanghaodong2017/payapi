@@ -9,6 +9,10 @@ public class StringUtils {
 		return false;
 	}
 
+	public static boolean isNotEmpty(String str) {
+		return !isEmpty(str);
+	}
+
 	public static boolean isEmpty(Object value) {
 		if (value != null) {
 			if (!((value instanceof String) ? (String) value : value.toString()).isEmpty()) {

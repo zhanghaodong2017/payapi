@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
@@ -142,6 +143,18 @@ public class HttpUtils {
 	 * @throws IOException
 	 */
 	public static String doGet(String url, Map<String, String> params) throws IOException {
+		return doGet(url, params, null);
+	}
+
+	/**
+	 * 发送 GET 请求（HTTP），K-V形式
+	 * 
+	 * @param url
+	 * @param params
+	 * @return
+	 * @throws IOException
+	 */
+	public static String doGet(String url, Map<String, String> params, Map<String, String> headers) throws IOException {
 		int i = 0;
 		if (params != null) {
 			StringBuffer param = new StringBuffer();
@@ -150,7 +163,7 @@ public class HttpUtils {
 					param.append("?");
 				else
 					param.append("&");
-				param.append(key).append("=").append(params.get(key));
+				param.append(key).append("=").append(encode(params.get(key)));
 				i++;
 			}
 			url += param;
@@ -161,6 +174,11 @@ public class HttpUtils {
 		HttpEntity entity = null;
 		try {
 			HttpGet httpGet = new HttpGet(url);
+			if (headers != null) {
+				for (String headerName : headers.keySet()) {
+					httpGet.setHeader(headerName, headers.get(headerName));
+				}
+			}
 			response = httpclient.execute(httpGet);
 			// int statusCode = response.getStatusLine().getStatusCode();
 
@@ -182,6 +200,14 @@ public class HttpUtils {
 			}
 		}
 		return result;
+	}
+
+	private static String encode(String str) {
+		try {
+			return URLEncoder.encode(str, "UTF-8");
+		} catch (Exception e) {
+		}
+		return "";
 	}
 
 	/**

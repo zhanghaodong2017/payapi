@@ -4,5 +4,5 @@ import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.RspDTO;
 
 public interface PayService {
-	public RspDTO pay(ReqDTO reqDTO);
+	public RspDTO pay(ReqDTO reqDTO) throws Exception;
 }
