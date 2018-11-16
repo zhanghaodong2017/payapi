@@ -1,0 +1,104 @@
+[2018-11-16 08:38:32:234] [INFO ] [com.happy.payapi.MainApplication]- Starting MainApplication on DESKTOP-H1HB9SN with PID 4704 (D:\work\workspace1\payapi\target\classes started by zhanghaodong in D:\work\workspace1\payapi)
+[2018-11-16 08:38:32:250] [INFO ] [com.happy.payapi.MainApplication]- No active profile set, falling back to default profiles: default
+[2018-11-16 08:38:32:459] [INFO ] [org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext]- Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:38:32 CST 2018]; root of context hierarchy
+[2018-11-16 08:38:33:663] [INFO ] [org.hibernate.validator.internal.util.Version]- HV000001: Hibernate Validator 5.3.5.Final
+[2018-11-16 08:38:36:207] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat initialized with port(s): 9999 (http)
+[2018-11-16 08:38:36:226] [INFO ] [org.apache.catalina.core.StandardService]- Starting service Tomcat
+[2018-11-16 08:38:36:228] [INFO ] [org.apache.catalina.core.StandardEngine]- Starting Servlet Engine: Apache Tomcat/8.5.14
+[2018-11-16 08:38:36:458] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring embedded WebApplicationContext
+[2018-11-16 08:38:36:458] [INFO ] [org.springframework.web.context.ContextLoader]- Root WebApplicationContext: initialization completed in 3999 ms
+[2018-11-16 08:38:36:855] [INFO ] [org.springframework.boot.web.servlet.ServletRegistrationBean]- Mapping servlet: 'dispatcherServlet' to [/]
+[2018-11-16 08:38:36:864] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'characterEncodingFilter' to: [/*]
+[2018-11-16 08:38:36:872] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2018-11-16 08:38:36:873] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2018-11-16 08:38:36:873] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'requestContextFilter' to: [/*]
+[2018-11-16 08:38:37:958] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]- Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:38:32 CST 2018]; root of context hierarchy
+[2018-11-16 08:38:38:251] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/test],methods=[GET],produces=[application/json]}" onto public com.happy.payapi.dto.Response com.happy.payapi.controller.TestController.test(java.lang.Boolean)
+[2018-11-16 08:38:38:259] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2018-11-16 08:38:38:260] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2018-11-16 08:38:38:330] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:38:38:330] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:38:38:419] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:38:39:031] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Registering beans for JMX exposure on startup
+[2018-11-16 08:38:39:033] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Bean with name 'dataSource' has been autodetected for JMX exposure
+[2018-11-16 08:38:39:038] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+[2018-11-16 08:38:39:071] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Initializing ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:38:39:094] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Starting ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:38:39:133] [INFO ] [org.apache.tomcat.util.net.NioSelectorPool]- Using a shared selector for servlet write/read
+[2018-11-16 08:38:39:171] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat started on port(s): 9999 (http)
+[2018-11-16 08:38:39:187] [INFO ] [com.happy.payapi.MainApplication]- Started MainApplication in 7.745 seconds (JVM running for 8.875)
+[2018-11-16 08:39:02:852] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2018-11-16 08:39:02:852] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization started
+[2018-11-16 08:39:02:911] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization completed in 58 ms
+[2018-11-16 08:39:13:022] [INFO ] [com.happy.payapi.config.ControllerLogInterceptor]- 
+[34030ec0554d44fdba7205f1a01c5b2e]方法:Response com.happy.payapi.controller.TestController.test(Boolean)
+参数:{"throwException":false}
+[2018-11-16 08:39:13:113] [INFO ] [com.happy.payapi.config.ControllerLogInterceptor]- [34030ec0554d44fdba7205f1a01c5b2e]Response内容:{"msg":"mock a Result","code":"0"}
+[2018-11-16 08:39:57:318] [INFO ] [com.happy.payapi.MainApplication]- Starting MainApplication on DESKTOP-H1HB9SN with PID 5660 (D:\work\workspace1\payapi\target\classes started by zhanghaodong in D:\work\workspace1\payapi)
+[2018-11-16 08:39:57:321] [INFO ] [com.happy.payapi.MainApplication]- No active profile set, falling back to default profiles: default
+[2018-11-16 08:39:57:378] [INFO ] [org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext]- Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:39:57 CST 2018]; root of context hierarchy
+[2018-11-16 08:39:57:931] [INFO ] [org.hibernate.validator.internal.util.Version]- HV000001: Hibernate Validator 5.3.5.Final
+[2018-11-16 08:39:59:373] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat initialized with port(s): 9999 (http)
+[2018-11-16 08:39:59:391] [INFO ] [org.apache.catalina.core.StandardService]- Starting service Tomcat
+[2018-11-16 08:39:59:393] [INFO ] [org.apache.catalina.core.StandardEngine]- Starting Servlet Engine: Apache Tomcat/8.5.14
+[2018-11-16 08:39:59:549] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring embedded WebApplicationContext
+[2018-11-16 08:39:59:549] [INFO ] [org.springframework.web.context.ContextLoader]- Root WebApplicationContext: initialization completed in 2172 ms
+[2018-11-16 08:39:59:722] [INFO ] [org.springframework.boot.web.servlet.ServletRegistrationBean]- Mapping servlet: 'dispatcherServlet' to [/]
+[2018-11-16 08:39:59:727] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'characterEncodingFilter' to: [/*]
+[2018-11-16 08:39:59:728] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2018-11-16 08:39:59:728] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2018-11-16 08:39:59:729] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'requestContextFilter' to: [/*]
+[2018-11-16 08:40:00:233] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]- Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:39:57 CST 2018]; root of context hierarchy
+[2018-11-16 08:40:00:301] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/test],methods=[GET],produces=[application/json]}" onto public com.happy.payapi.dto.Response com.happy.payapi.controller.TestController.test(java.lang.Boolean)
+[2018-11-16 08:40:00:304] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2018-11-16 08:40:00:305] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2018-11-16 08:40:00:338] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:40:00:339] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:40:00:377] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:40:00:744] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Registering beans for JMX exposure on startup
+[2018-11-16 08:40:00:746] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Bean with name 'dataSource' has been autodetected for JMX exposure
+[2018-11-16 08:40:00:750] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+[2018-11-16 08:40:00:769] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Initializing ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:40:00:785] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Starting ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:40:00:930] [INFO ] [org.apache.tomcat.util.net.NioSelectorPool]- Using a shared selector for servlet write/read
+[2018-11-16 08:40:00:949] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat started on port(s): 9999 (http)
+[2018-11-16 08:40:00:953] [INFO ] [com.happy.payapi.MainApplication]- Started MainApplication in 4.085 seconds (JVM running for 4.509)
+[2018-11-16 08:40:06:108] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2018-11-16 08:40:06:109] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization started
+[2018-11-16 08:40:06:149] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization completed in 40 ms
+[2018-11-16 08:41:41:744] [INFO ] [com.happy.payapi.MainApplication]- Starting MainApplication on DESKTOP-H1HB9SN with PID 7844 (D:\work\workspace1\payapi\target\classes started by zhanghaodong in D:\work\workspace1\payapi)
+[2018-11-16 08:41:41:747] [INFO ] [com.happy.payapi.MainApplication]- No active profile set, falling back to default profiles: default
+[2018-11-16 08:41:41:800] [INFO ] [org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext]- Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:41:41 CST 2018]; root of context hierarchy
+[2018-11-16 08:41:42:267] [INFO ] [org.hibernate.validator.internal.util.Version]- HV000001: Hibernate Validator 5.3.5.Final
+[2018-11-16 08:41:44:200] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat initialized with port(s): 9999 (http)
+[2018-11-16 08:41:44:212] [INFO ] [org.apache.catalina.core.StandardService]- Starting service Tomcat
+[2018-11-16 08:41:44:214] [INFO ] [org.apache.catalina.core.StandardEngine]- Starting Servlet Engine: Apache Tomcat/8.5.14
+[2018-11-16 08:41:44:408] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring embedded WebApplicationContext
+[2018-11-16 08:41:44:409] [INFO ] [org.springframework.web.context.ContextLoader]- Root WebApplicationContext: initialization completed in 2609 ms
+[2018-11-16 08:41:44:799] [INFO ] [org.springframework.boot.web.servlet.ServletRegistrationBean]- Mapping servlet: 'dispatcherServlet' to [/]
+[2018-11-16 08:41:44:804] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'characterEncodingFilter' to: [/*]
+[2018-11-16 08:41:44:805] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2018-11-16 08:41:44:805] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[2018-11-16 08:41:44:805] [INFO ] [org.springframework.boot.web.servlet.FilterRegistrationBean]- Mapping filter: 'requestContextFilter' to: [/*]
+[2018-11-16 08:41:45:660] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter]- Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2b6856dd: startup date [Fri Nov 16 08:41:41 CST 2018]; root of context hierarchy
+[2018-11-16 08:41:45:986] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/test],methods=[GET],produces=[application/json]}" onto public com.happy.payapi.dto.Response com.happy.payapi.controller.TestController.test(java.lang.Boolean)
+[2018-11-16 08:41:45:997] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2018-11-16 08:41:45:999] [INFO ] [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]- Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2018-11-16 08:41:46:075] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:41:46:076] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:41:46:171] [INFO ] [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping]- Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2018-11-16 08:41:46:799] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Registering beans for JMX exposure on startup
+[2018-11-16 08:41:46:801] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Bean with name 'dataSource' has been autodetected for JMX exposure
+[2018-11-16 08:41:46:806] [INFO ] [org.springframework.jmx.export.annotation.AnnotationMBeanExporter]- Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+[2018-11-16 08:41:46:825] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Initializing ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:41:46:840] [INFO ] [org.apache.coyote.http11.Http11NioProtocol]- Starting ProtocolHandler ["http-nio-9999"]
+[2018-11-16 08:41:46:863] [INFO ] [org.apache.tomcat.util.net.NioSelectorPool]- Using a shared selector for servlet write/read
+[2018-11-16 08:41:46:882] [INFO ] [org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer]- Tomcat started on port(s): 9999 (http)
+[2018-11-16 08:41:46:887] [INFO ] [com.happy.payapi.MainApplication]- Started MainApplication in 5.536 seconds (JVM running for 5.96)
+[2018-11-16 08:41:49:101] [INFO ] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]]- Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2018-11-16 08:41:49:101] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization started
+[2018-11-16 08:41:49:149] [INFO ] [org.springframework.web.servlet.DispatcherServlet]- FrameworkServlet 'dispatcherServlet': initialization completed in 48 ms
+[2018-11-16 08:41:49:361] [INFO ] [com.happy.payapi.config.ControllerLogInterceptor]- 
+[97ece1435dc54d0284e04bcb3cbb9344]方法:Response com.happy.payapi.controller.TestController.test(Boolean)
+参数:{"throwException":false}
+[2018-11-16 08:41:49:500] [INFO ] [com.happy.payapi.config.ControllerLogInterceptor]- [97ece1435dc54d0284e04bcb3cbb9344]Response内容:{"msg":"mock a Result","code":"0"}
