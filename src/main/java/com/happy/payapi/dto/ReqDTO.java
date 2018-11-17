@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 public class ReqDTO {
 
 	private String appid;
-
-	private BigDecimal amount;// 金额：单位分
+	
+	private String appname;
+	
+	private Integer amount;// 金额：单位分
 
 	private String goodsDesc;// 商品描述
 
@@ -26,11 +28,11 @@ public class ReqDTO {
 		this.appid = appid;
 	}
 
-	public BigDecimal getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
@@ -73,5 +75,14 @@ public class ReqDTO {
 	public void setSource(String source) {
 		this.source = source;
 	}
+
+	public String getAppname() {
+		return appname;
+	}
+
+	public void setAppname(String appname) {
+		this.appname = appname;
+	}
+	
 
 }

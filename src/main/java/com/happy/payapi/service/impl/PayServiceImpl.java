@@ -1,11 +1,20 @@
 package com.happy.payapi.service.impl;
 
+import java.util.Date;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.wall.violation.ErrorCode;
+import com.google.gson.Gson;
+import com.happy.payapi.dto.BizException;
+import com.happy.payapi.dto.Errorcode;
 import com.happy.payapi.dto.PayChannelNo;
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.RspDTO;
+import com.happy.payapi.entity.Paylog;
+import com.happy.payapi.mapper.PaylogMapper;
 import com.happy.payapi.service.PayService;
 import com.happy.payapi.service.strategy.GeneralStrategy;
 import com.happy.payapi.service.strategy.Wx1001Strategy;
@@ -16,6 +25,8 @@ import com.happy.payapi.utils.StringUtils;
 public class PayServiceImpl implements PayService {
 
 	@Autowired
+	private PaylogMapper paylogMapper;
+	@Autowired
 	private Wx1001Strategy wx1001Strategy;
 	@Autowired
 	private Wx1002Strategy wx1002Strategy;
@@ -23,9 +34,64 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public RspDTO pay(ReqDTO reqDTO) throws Exception {
 		// TODO 获取可用通道，目前只有wx1001，先写死
-		GeneralStrategy strategy = getStrategy(PayChannelNo.wx1001);
-		RspDTO rspDTO = strategy.pay(reqDTO);
+		Paylog paylog = new Paylog();
+		fillPaylog(reqDTO, paylog);
+		RspDTO rspDTO = null;
+		try {
+			paylog.setPaychannelno(PayChannelNo.wx1001.getCode());
+			GeneralStrategy strategy = getStrategy(PayChannelNo.wx1001);
+			rspDTO = strategy.pay(reqDTO, paylog);
+			paylog.setPaystatus("1");// 支付结果；0成功,1支付中，2支付失败，3未支付
+		} catch (BizException e) {
+			paylog.setPaystatus("3");
+			paylog.setErrorcode(e.getCode());
+			paylog.setErrormsg(e.getMsg());
+			throw e;
+		} catch (Exception e) {
+			paylog.setPaystatus("3");
+			paylog.setErrorcode(Errorcode.fail_4.getCode());
+			paylog.setErrormsg(e.getMessage());
+			throw new BizException(Errorcode.fail_4.getCode(), Errorcode.fail_4.getDesc());
+		} finally {
+			// 保存日志
+			saveLog(paylog);
+		}
 		return rspDTO;
+	}
+
+	private void fillPaylog(ReqDTO reqDTO, Paylog paylog) {
+		paylog.setAmount(reqDTO.getAmount());
+		paylog.setAppid(reqDTO.getAppid());
+		paylog.setAppname(reqDTO.getAppname());
+		paylog.setExt(reqDTO.getExt());
+		paylog.setGoodsdesc(reqDTO.getGoodsDesc());
+		paylog.setPaytype(reqDTO.getPaytype());
+		paylog.setSource(reqDTO.getSource());
+		paylog.setReturnurl(reqDTO.getReturnurl());
+	}
+
+	private void saveLog(Paylog paylog) {
+		try {
+			String uuid = UUID.randomUUID().toString().replace("-", "");
+			paylog.setUuid(uuid);
+			String reqdata = paylog.getReqdata();
+			if (reqdata != null && reqdata.length() > 1024) {
+				paylog.setReqdata(reqdata.substring(0, 1024));
+			}
+			String rspdata = paylog.getRspdata();
+			if (rspdata != null && rspdata.length() > 1024) {
+				paylog.setRspdata(rspdata.substring(0, 1024));
+			}
+			String errormsg = paylog.getErrormsg();
+			if (errormsg != null && errormsg.length() > 128) {
+				paylog.setErrormsg(errormsg.substring(0, 1024));
+			}
+			paylog.setCreatetime(new Date());
+			System.out.println(new Gson().toJson(paylog));
+			paylogMapper.insert(paylog);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private GeneralStrategy getStrategy(PayChannelNo paychannelno) {

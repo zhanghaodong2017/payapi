@@ -22,7 +22,7 @@
 			<property name="suppressDate" value="true"></property>
 		</commentGenerator>
 		<!-- jdbc连接配置 -->
-		<jdbcConnection connectionURL="jdbc:mysql://111.231.115.86:3306/zhd"
+		<jdbcConnection connectionURL="jdbc:mysql://111.231.115.86:3306/payapi"
 			driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
 
 		<!-- 类型转换 -->

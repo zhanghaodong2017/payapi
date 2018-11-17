@@ -2,105 +2,111 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.happy.payapi.mapper.PaylogMapper" >
   <resultMap id="BaseResultMap" type="com.happy.payapi.entity.Paylog" >
-    <id column="cporderno" property="cporderno" jdbcType="VARCHAR" />
-    <id column="merchantid" property="merchantid" jdbcType="VARCHAR" />
-    <result column="qrcodeid" property="qrcodeid" jdbcType="INTEGER" />
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="appid" property="appid" jdbcType="VARCHAR" />
+    <result column="appname" property="appname" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="returnurl" property="returnurl" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
     <result column="paytype" property="paytype" jdbcType="VARCHAR" />
-    <result column="appmount" property="appmount" jdbcType="INTEGER" />
-    <result column="subject" property="subject" jdbcType="VARCHAR" />
-    <result column="transdata" property="transdata" jdbcType="VARCHAR" />
-    <result column="notifyurl" property="notifyurl" jdbcType="VARCHAR" />
-    <result column="paystate" property="paystate" jdbcType="VARCHAR" />
-    <result column="paytime" property="paytime" jdbcType="TIMESTAMP" />
-    <result column="payuser" property="payuser" jdbcType="VARCHAR" />
-    <result column="thirdtradeno" property="thirdtradeno" jdbcType="VARCHAR" />
-    <result column="notifystate" property="notifystate" jdbcType="VARCHAR" />
-    <result column="notifydata" property="notifydata" jdbcType="VARCHAR" />
-    <result column="notifytime" property="notifytime" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="goodsdesc" property="goodsdesc" jdbcType="VARCHAR" />
+    <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="thirdorderno" property="thirdorderno" jdbcType="VARCHAR" />
+    <result column="reqdata" property="reqdata" jdbcType="VARCHAR" />
+    <result column="rspdata" property="rspdata" jdbcType="VARCHAR" />
+    <result column="paychannelno" property="paychannelno" jdbcType="VARCHAR" />
+    <result column="paystatus" property="paystatus" jdbcType="VARCHAR" />
+    <result column="errorcode" property="errorcode" jdbcType="VARCHAR" />
+    <result column="errormsg" property="errormsg" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cporderno, merchantid, qrcodeid, paytype, appmount, subject, transdata, notifyurl, 
-    paystate, paytime, payuser, thirdtradeno, notifystate, notifydata, notifytime, remark, 
+    uuid, appid, appname, amount, returnurl, ext, paytype, source, goodsdesc, orderno, 
+    thirdorderno, reqdata, rspdata, paychannelno, paystatus, errorcode, errormsg, remark, 
     updatetime, createtime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.happy.payapi.entity.PaylogKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from paylog
-    where cporderno = #{cporderno,jdbcType=VARCHAR}
-      and merchantid = #{merchantid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.happy.payapi.entity.PaylogKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from paylog
-    where cporderno = #{cporderno,jdbcType=VARCHAR}
-      and merchantid = #{merchantid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.happy.payapi.entity.Paylog" >
-    insert into paylog (cporderno, merchantid, qrcodeid, 
-      paytype, appmount, subject, 
-      transdata, notifyurl, paystate, 
-      paytime, payuser, thirdtradeno, 
-      notifystate, notifydata, notifytime, 
-      remark, updatetime, createtime
-      )
-    values (#{cporderno,jdbcType=VARCHAR}, #{merchantid,jdbcType=VARCHAR}, #{qrcodeid,jdbcType=INTEGER}, 
-      #{paytype,jdbcType=VARCHAR}, #{appmount,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, 
-      #{transdata,jdbcType=VARCHAR}, #{notifyurl,jdbcType=VARCHAR}, #{paystate,jdbcType=VARCHAR}, 
-      #{paytime,jdbcType=TIMESTAMP}, #{payuser,jdbcType=VARCHAR}, #{thirdtradeno,jdbcType=VARCHAR}, 
-      #{notifystate,jdbcType=VARCHAR}, #{notifydata,jdbcType=VARCHAR}, #{notifytime,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}
-      )
+    insert into paylog (uuid, appid, appname, 
+      amount, returnurl, ext, 
+      paytype, source, goodsdesc, 
+      orderno, thirdorderno, reqdata, 
+      rspdata, paychannelno, paystatus, 
+      errorcode, errormsg, remark, 
+      updatetime, createtime)
+    values (#{uuid,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{appname,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{returnurl,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{paytype,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{goodsdesc,jdbcType=VARCHAR}, 
+      #{orderno,jdbcType=VARCHAR}, #{thirdorderno,jdbcType=VARCHAR}, #{reqdata,jdbcType=VARCHAR}, 
+      #{rspdata,jdbcType=VARCHAR}, #{paychannelno,jdbcType=VARCHAR}, #{paystatus,jdbcType=VARCHAR}, 
+      #{errorcode,jdbcType=VARCHAR}, #{errormsg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.happy.payapi.entity.Paylog" >
     insert into paylog
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="cporderno != null" >
-        cporderno,
+      <if test="uuid != null" >
+        uuid,
       </if>
-      <if test="merchantid != null" >
-        merchantid,
+      <if test="appid != null" >
+        appid,
       </if>
-      <if test="qrcodeid != null" >
-        qrcodeid,
+      <if test="appname != null" >
+        appname,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="returnurl != null" >
+        returnurl,
+      </if>
+      <if test="ext != null" >
+        ext,
       </if>
       <if test="paytype != null" >
         paytype,
       </if>
-      <if test="appmount != null" >
-        appmount,
+      <if test="source != null" >
+        source,
       </if>
-      <if test="subject != null" >
-        subject,
+      <if test="goodsdesc != null" >
+        goodsdesc,
       </if>
-      <if test="transdata != null" >
-        transdata,
+      <if test="orderno != null" >
+        orderno,
       </if>
-      <if test="notifyurl != null" >
-        notifyurl,
+      <if test="thirdorderno != null" >
+        thirdorderno,
       </if>
-      <if test="paystate != null" >
-        paystate,
+      <if test="reqdata != null" >
+        reqdata,
       </if>
-      <if test="paytime != null" >
-        paytime,
+      <if test="rspdata != null" >
+        rspdata,
       </if>
-      <if test="payuser != null" >
-        payuser,
+      <if test="paychannelno != null" >
+        paychannelno,
       </if>
-      <if test="thirdtradeno != null" >
-        thirdtradeno,
+      <if test="paystatus != null" >
+        paystatus,
       </if>
-      <if test="notifystate != null" >
-        notifystate,
+      <if test="errorcode != null" >
+        errorcode,
       </if>
-      <if test="notifydata != null" >
-        notifydata,
-      </if>
-      <if test="notifytime != null" >
-        notifytime,
+      <if test="errormsg != null" >
+        errormsg,
       </if>
       <if test="remark != null" >
         remark,
@@ -113,50 +119,56 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="cporderno != null" >
-        #{cporderno,jdbcType=VARCHAR},
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
       </if>
-      <if test="merchantid != null" >
-        #{merchantid,jdbcType=VARCHAR},
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
       </if>
-      <if test="qrcodeid != null" >
-        #{qrcodeid,jdbcType=INTEGER},
+      <if test="appname != null" >
+        #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="returnurl != null" >
+        #{returnurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
       </if>
       <if test="paytype != null" >
         #{paytype,jdbcType=VARCHAR},
       </if>
-      <if test="appmount != null" >
-        #{appmount,jdbcType=INTEGER},
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
       </if>
-      <if test="subject != null" >
-        #{subject,jdbcType=VARCHAR},
+      <if test="goodsdesc != null" >
+        #{goodsdesc,jdbcType=VARCHAR},
       </if>
-      <if test="transdata != null" >
-        #{transdata,jdbcType=VARCHAR},
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
       </if>
-      <if test="notifyurl != null" >
-        #{notifyurl,jdbcType=VARCHAR},
+      <if test="thirdorderno != null" >
+        #{thirdorderno,jdbcType=VARCHAR},
       </if>
-      <if test="paystate != null" >
-        #{paystate,jdbcType=VARCHAR},
+      <if test="reqdata != null" >
+        #{reqdata,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null" >
-        #{paytime,jdbcType=TIMESTAMP},
+      <if test="rspdata != null" >
+        #{rspdata,jdbcType=VARCHAR},
       </if>
-      <if test="payuser != null" >
-        #{payuser,jdbcType=VARCHAR},
+      <if test="paychannelno != null" >
+        #{paychannelno,jdbcType=VARCHAR},
       </if>
-      <if test="thirdtradeno != null" >
-        #{thirdtradeno,jdbcType=VARCHAR},
+      <if test="paystatus != null" >
+        #{paystatus,jdbcType=VARCHAR},
       </if>
-      <if test="notifystate != null" >
-        #{notifystate,jdbcType=VARCHAR},
+      <if test="errorcode != null" >
+        #{errorcode,jdbcType=VARCHAR},
       </if>
-      <if test="notifydata != null" >
-        #{notifydata,jdbcType=VARCHAR},
-      </if>
-      <if test="notifytime != null" >
-        #{notifytime,jdbcType=TIMESTAMP},
+      <if test="errormsg != null" >
+        #{errormsg,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -172,44 +184,53 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.happy.payapi.entity.Paylog" >
     update paylog
     <set >
-      <if test="qrcodeid != null" >
-        qrcodeid = #{qrcodeid,jdbcType=INTEGER},
+      <if test="appid != null" >
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appname != null" >
+        appname = #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="returnurl != null" >
+        returnurl = #{returnurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
       </if>
       <if test="paytype != null" >
         paytype = #{paytype,jdbcType=VARCHAR},
       </if>
-      <if test="appmount != null" >
-        appmount = #{appmount,jdbcType=INTEGER},
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
       </if>
-      <if test="subject != null" >
-        subject = #{subject,jdbcType=VARCHAR},
+      <if test="goodsdesc != null" >
+        goodsdesc = #{goodsdesc,jdbcType=VARCHAR},
       </if>
-      <if test="transdata != null" >
-        transdata = #{transdata,jdbcType=VARCHAR},
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=VARCHAR},
       </if>
-      <if test="notifyurl != null" >
-        notifyurl = #{notifyurl,jdbcType=VARCHAR},
+      <if test="thirdorderno != null" >
+        thirdorderno = #{thirdorderno,jdbcType=VARCHAR},
       </if>
-      <if test="paystate != null" >
-        paystate = #{paystate,jdbcType=VARCHAR},
+      <if test="reqdata != null" >
+        reqdata = #{reqdata,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null" >
-        paytime = #{paytime,jdbcType=TIMESTAMP},
+      <if test="rspdata != null" >
+        rspdata = #{rspdata,jdbcType=VARCHAR},
       </if>
-      <if test="payuser != null" >
-        payuser = #{payuser,jdbcType=VARCHAR},
+      <if test="paychannelno != null" >
+        paychannelno = #{paychannelno,jdbcType=VARCHAR},
       </if>
-      <if test="thirdtradeno != null" >
-        thirdtradeno = #{thirdtradeno,jdbcType=VARCHAR},
+      <if test="paystatus != null" >
+        paystatus = #{paystatus,jdbcType=VARCHAR},
       </if>
-      <if test="notifystate != null" >
-        notifystate = #{notifystate,jdbcType=VARCHAR},
+      <if test="errorcode != null" >
+        errorcode = #{errorcode,jdbcType=VARCHAR},
       </if>
-      <if test="notifydata != null" >
-        notifydata = #{notifydata,jdbcType=VARCHAR},
-      </if>
-      <if test="notifytime != null" >
-        notifytime = #{notifytime,jdbcType=TIMESTAMP},
+      <if test="errormsg != null" >
+        errormsg = #{errormsg,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -221,28 +242,35 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where cporderno = #{cporderno,jdbcType=VARCHAR}
-      and merchantid = #{merchantid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.happy.payapi.entity.Paylog" >
     update paylog
-    set qrcodeid = #{qrcodeid,jdbcType=INTEGER},
+    set appid = #{appid,jdbcType=VARCHAR},
+      appname = #{appname,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      returnurl = #{returnurl,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
       paytype = #{paytype,jdbcType=VARCHAR},
-      appmount = #{appmount,jdbcType=INTEGER},
-      subject = #{subject,jdbcType=VARCHAR},
-      transdata = #{transdata,jdbcType=VARCHAR},
-      notifyurl = #{notifyurl,jdbcType=VARCHAR},
-      paystate = #{paystate,jdbcType=VARCHAR},
-      paytime = #{paytime,jdbcType=TIMESTAMP},
-      payuser = #{payuser,jdbcType=VARCHAR},
-      thirdtradeno = #{thirdtradeno,jdbcType=VARCHAR},
-      notifystate = #{notifystate,jdbcType=VARCHAR},
-      notifydata = #{notifydata,jdbcType=VARCHAR},
-      notifytime = #{notifytime,jdbcType=TIMESTAMP},
+      source = #{source,jdbcType=VARCHAR},
+      goodsdesc = #{goodsdesc,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=VARCHAR},
+      thirdorderno = #{thirdorderno,jdbcType=VARCHAR},
+      reqdata = #{reqdata,jdbcType=VARCHAR},
+      rspdata = #{rspdata,jdbcType=VARCHAR},
+      paychannelno = #{paychannelno,jdbcType=VARCHAR},
+      paystatus = #{paystatus,jdbcType=VARCHAR},
+      errorcode = #{errorcode,jdbcType=VARCHAR},
+      errormsg = #{errormsg,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
       createtime = #{createtime,jdbcType=TIMESTAMP}
-    where cporderno = #{cporderno,jdbcType=VARCHAR}
-      and merchantid = #{merchantid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
   </update>
+    <select id="queryByOrderno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from paylog
+    where orderno = #{orderno,jdbcType=VARCHAR}
+  </select>
 </mapper>

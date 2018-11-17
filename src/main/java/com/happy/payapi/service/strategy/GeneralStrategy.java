@@ -4,10 +4,11 @@ import org.springframework.util.Assert;
 
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.RspDTO;
+import com.happy.payapi.entity.Paylog;
 
 public abstract class GeneralStrategy {
 
-	public abstract RspDTO pay(ReqDTO reqDTO) throws Exception;
+	public abstract RspDTO pay(ReqDTO reqDTO, Paylog paylog) throws Exception;
 
 	protected String getOrderId(int n) {
 		Assert.isTrue(n >= 12, "订单号的长度不能小于12");

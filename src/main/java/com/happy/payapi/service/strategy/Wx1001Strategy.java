@@ -10,8 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSONObject;
+import com.happy.payapi.dto.BizException;
+import com.happy.payapi.dto.Errorcode;
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.RspDTO;
+import com.happy.payapi.entity.Paylog;
 import com.happy.payapi.utils.HttpUtils;
 import com.happy.payapi.utils.MD5Utill;
 import com.happy.payapi.utils.StringUtils;
@@ -23,25 +27,43 @@ public class Wx1001Strategy extends GeneralStrategy {
 
 	public static final String payway = "weixin";
 	public static final String paytype = "weixin.app";
-	public static final String appkey = "4efd468a8f2281ed0eee630cb639cd83";
+	public static final String appkey = "13e541320037895f572da58c6be47a73";
 	public static final String appid = "20000";
-	public static final String notifyurl = "http://api.shanLide.cn/appdemo/paycb.php";
+	public static final String notifyurl = "http://zhd.free.idcfengye.com/callback/wx1001";
+	public static final String preorderApi = "http://api.daduci.com/";
 
 	@Override
-	public RspDTO pay(ReqDTO reqDTO) throws Exception {
+	public RspDTO pay(ReqDTO reqDTO, Paylog paylog) throws Exception {
+		RspDTO rspDTO = new RspDTO();
+		String orderno = appid + "_" + getOrderId(24);
+		paylog.setOrderno(orderno);
+		rspDTO.setOrderno(orderno);
 
-		String preorderApi = "http://api.daduci.com/";
-		Map<String, String> params = getReqParam(reqDTO);
+		Map<String, String> params = getReqParam(reqDTO, orderno);
+		paylog.setReqdata(params.toString());
 		String res = sendGet(preorderApi, params);
-		logger.info(params.toString());
-		logger.info(res);
-		return null;
+		paylog.setRspdata(res);
+		JSONObject jsonObject = JSONObject.parseObject(res);
+		String status = jsonObject.getString("status");
+		String msg = jsonObject.getString("msg");
+		if (!"1".equals(status)) {
+			throw new BizException(Errorcode.fail_3.getCode(), msg);
+		}
+		JSONObject data = jsonObject.getJSONObject("data");
+		String prepayid = data.getString("prepayid");
+		String partnerid = data.getString("partnerid");
+		String _appid = data.getString("appid");
+		String noncestr = data.getString("noncestr");
+		rspDTO.setAppid(_appid);
+		rspDTO.setNoncestr(noncestr);
+		rspDTO.setPartnerid(partnerid);
+		rspDTO.setPrepayid(prepayid);
+		return rspDTO;
 	}
 
-	private Map<String, String> getReqParam(ReqDTO reqDTO) throws Exception {
-		String amount = reqDTO.getAmount().intValue() + "";
+	private Map<String, String> getReqParam(ReqDTO reqDTO, String ordersn) throws Exception {
+		String amount = reqDTO.getAmount().toString();
 		String itemname = reqDTO.getGoodsDesc();
-		String ordersn = getOrderId(24);
 		String orderdesc = "test";
 		String notifyurl = "http://api.shanLide.cn/appdemo/paycb.php";
 

@@ -2,32 +2,40 @@ package com.happy.payapi.entity;
 
 import java.util.Date;
 
-public class Paylog extends PaylogKey {
-    private Integer qrcodeid;
+public class Paylog {
+    private String uuid;
+
+    private String appid;
+
+    private String appname;
+
+    private Integer amount;
+
+    private String returnurl;
+
+    private String ext;
 
     private String paytype;
 
-    private Integer appmount;
+    private String source;
 
-    private String subject;
+    private String goodsdesc;
 
-    private String transdata;
+    private String orderno;
 
-    private String notifyurl;
+    private String thirdorderno;
 
-    private String paystate;
+    private String reqdata;
 
-    private Date paytime;
+    private String rspdata;
 
-    private String payuser;
+    private String paychannelno;
 
-    private String thirdtradeno;
+    private String paystatus;
 
-    private String notifystate;
+    private String errorcode;
 
-    private String notifydata;
-
-    private Date notifytime;
+    private String errormsg;
 
     private String remark;
 
@@ -35,12 +43,52 @@ public class Paylog extends PaylogKey {
 
     private Date createtime;
 
-    public Integer getQrcodeid() {
-        return qrcodeid;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setQrcodeid(Integer qrcodeid) {
-        this.qrcodeid = qrcodeid;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public void setAppid(String appid) {
+        this.appid = appid;
+    }
+
+    public String getAppname() {
+        return appname;
+    }
+
+    public void setAppname(String appname) {
+        this.appname = appname;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public String getReturnurl() {
+        return returnurl;
+    }
+
+    public void setReturnurl(String returnurl) {
+        this.returnurl = returnurl;
+    }
+
+    public String getExt() {
+        return ext;
+    }
+
+    public void setExt(String ext) {
+        this.ext = ext;
     }
 
     public String getPaytype() {
@@ -51,92 +99,84 @@ public class Paylog extends PaylogKey {
         this.paytype = paytype;
     }
 
-    public Integer getAppmount() {
-        return appmount;
+    public String getSource() {
+        return source;
     }
 
-    public void setAppmount(Integer appmount) {
-        this.appmount = appmount;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getGoodsdesc() {
+        return goodsdesc;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setGoodsdesc(String goodsdesc) {
+        this.goodsdesc = goodsdesc;
     }
 
-    public String getTransdata() {
-        return transdata;
+    public String getOrderno() {
+        return orderno;
     }
 
-    public void setTransdata(String transdata) {
-        this.transdata = transdata;
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
     }
 
-    public String getNotifyurl() {
-        return notifyurl;
+    public String getThirdorderno() {
+        return thirdorderno;
     }
 
-    public void setNotifyurl(String notifyurl) {
-        this.notifyurl = notifyurl;
+    public void setThirdorderno(String thirdorderno) {
+        this.thirdorderno = thirdorderno;
     }
 
-    public String getPaystate() {
-        return paystate;
+    public String getReqdata() {
+        return reqdata;
     }
 
-    public void setPaystate(String paystate) {
-        this.paystate = paystate;
+    public void setReqdata(String reqdata) {
+        this.reqdata = reqdata;
     }
 
-    public Date getPaytime() {
-        return paytime;
+    public String getRspdata() {
+        return rspdata;
     }
 
-    public void setPaytime(Date paytime) {
-        this.paytime = paytime;
+    public void setRspdata(String rspdata) {
+        this.rspdata = rspdata;
     }
 
-    public String getPayuser() {
-        return payuser;
+    public String getPaychannelno() {
+        return paychannelno;
     }
 
-    public void setPayuser(String payuser) {
-        this.payuser = payuser;
+    public void setPaychannelno(String paychannelno) {
+        this.paychannelno = paychannelno;
     }
 
-    public String getThirdtradeno() {
-        return thirdtradeno;
+    public String getPaystatus() {
+        return paystatus;
     }
 
-    public void setThirdtradeno(String thirdtradeno) {
-        this.thirdtradeno = thirdtradeno;
+    public void setPaystatus(String paystatus) {
+        this.paystatus = paystatus;
     }
 
-    public String getNotifystate() {
-        return notifystate;
+    public String getErrorcode() {
+        return errorcode;
     }
 
-    public void setNotifystate(String notifystate) {
-        this.notifystate = notifystate;
+    public void setErrorcode(String errorcode) {
+        this.errorcode = errorcode;
     }
 
-    public String getNotifydata() {
-        return notifydata;
+    public String getErrormsg() {
+        return errormsg;
     }
 
-    public void setNotifydata(String notifydata) {
-        this.notifydata = notifydata;
-    }
-
-    public Date getNotifytime() {
-        return notifytime;
-    }
-
-    public void setNotifytime(Date notifytime) {
-        this.notifytime = notifytime;
+    public void setErrormsg(String errormsg) {
+        this.errormsg = errormsg;
     }
 
     public String getRemark() {

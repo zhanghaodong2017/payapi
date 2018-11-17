@@ -44,12 +44,12 @@ public class Response<T> {
 	public Response(T data) {
 		super();
 		if (data != null) {
-			this.code = "0";
-			this.msg = "成功";
+			this.code = Errorcode.success.getCode();
+			this.msg = Errorcode.success.getDesc();
 			this.data = data;
 		} else {
-			this.code = "1";
-			this.msg = "失败";
+			this.code = Errorcode.fail_3.getCode();
+			this.msg = Errorcode.fail_3.getDesc();
 		}
 	}
 

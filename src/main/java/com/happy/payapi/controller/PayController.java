@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happy.payapi.dto.BizException;
+import com.happy.payapi.dto.Errorcode;
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.Response;
 import com.happy.payapi.dto.RspDTO;
@@ -25,7 +26,7 @@ public class PayController {
 			return new Response(e.getCode(), e.getMsg());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Response("2", "异常");
+			return new Response(Errorcode.fail_4.getCode(), Errorcode.fail_4.getDesc());
 		}
 	}
 

@@ -1,18 +1,19 @@
 package com.happy.payapi.mapper;
 
 import com.happy.payapi.entity.Paylog;
-import com.happy.payapi.entity.PaylogKey;
 
 public interface PaylogMapper {
-    int deleteByPrimaryKey(PaylogKey key);
+	int deleteByPrimaryKey(String uuid);
 
-    int insert(Paylog record);
+	int insert(Paylog record);
 
-    int insertSelective(Paylog record);
+	int insertSelective(Paylog record);
 
-    Paylog selectByPrimaryKey(PaylogKey key);
+	Paylog selectByPrimaryKey(String uuid);
 
-    int updateByPrimaryKeySelective(Paylog record);
+	int updateByPrimaryKeySelective(Paylog record);
 
-    int updateByPrimaryKey(Paylog record);
+	int updateByPrimaryKey(Paylog record);
+
+	Paylog queryByOrderno(String orderno);
 }
