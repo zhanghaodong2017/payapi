@@ -29,7 +29,7 @@ public class Wx1001Strategy extends GeneralStrategy {
 	public static final String paytype = "weixin.app";
 	public static final String appkey = "13e541320037895f572da58c6be47a73";
 	public static final String appid = "20000";
-	public static final String notifyurl = "http://zhd.free.idcfengye.com/callback/wx1001";
+	public static final String notifyurl = "http://47.105.171.206:9999/callback/wx1001";
 	public static final String preorderApi = "http://api.daduci.com/";
 
 	@Override
@@ -65,7 +65,6 @@ public class Wx1001Strategy extends GeneralStrategy {
 		String amount = reqDTO.getAmount().toString();
 		String itemname = reqDTO.getGoodsDesc();
 		String orderdesc = "test";
-		String notifyurl = "http://api.shanLide.cn/appdemo/paycb.php";
 
 		Map<String, String> treeMap = new TreeMap<String, String>();
 		treeMap.put("appid", appid);

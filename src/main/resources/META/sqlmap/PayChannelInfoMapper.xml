@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.happy.payapi.mapper.PayChannelInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.happy.payapi.entity.PayChannelInfo" >
+    <id column="paychannelno" property="paychannelno" jdbcType="VARCHAR" />
+    <result column="channelname" property="channelname" jdbcType="VARCHAR" />
+    <result column="paytype" property="paytype" jdbcType="VARCHAR" />
+    <result column="orderno" property="orderno" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    paychannelno, channelname, paytype, orderno, state, remark, updatetime, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from paychannelinfo
+    where paychannelno = #{paychannelno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from paychannelinfo
+    where paychannelno = #{paychannelno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.happy.payapi.entity.PayChannelInfo" >
+    insert into paychannelinfo (paychannelno, channelname, paytype, 
+      orderno, state, remark, 
+      updatetime, createtime)
+    values (#{paychannelno,jdbcType=VARCHAR}, #{channelname,jdbcType=VARCHAR}, #{paytype,jdbcType=VARCHAR}, 
+      #{orderno,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.happy.payapi.entity.PayChannelInfo" >
+    insert into paychannelinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paychannelno != null" >
+        paychannelno,
+      </if>
+      <if test="channelname != null" >
+        channelname,
+      </if>
+      <if test="paytype != null" >
+        paytype,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paychannelno != null" >
+        #{paychannelno,jdbcType=VARCHAR},
+      </if>
+      <if test="channelname != null" >
+        #{channelname,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.happy.payapi.entity.PayChannelInfo" >
+    update paychannelinfo
+    <set >
+      <if test="channelname != null" >
+        channelname = #{channelname,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        paytype = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where paychannelno = #{paychannelno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.happy.payapi.entity.PayChannelInfo" >
+    update paychannelinfo
+    set channelname = #{channelname,jdbcType=VARCHAR},
+      paytype = #{paytype,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where paychannelno = #{paychannelno,jdbcType=VARCHAR}
+  </update>
+    <select id="queryAvailable" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from paychannelinfo
+    where paytype = #{paytype,jdbcType=VARCHAR}
+    and state='0'
+    order by orderno
+  </select>
+</mapper>

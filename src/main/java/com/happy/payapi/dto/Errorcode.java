@@ -5,7 +5,8 @@ public enum Errorcode {
 	fail_1("f1", "金额不正确"), 
 	fail_2("f2", "订单号不正确"), 
 	fail_3("f3", "其它错误"),
-	fail_4("f4", "异常");
+	fail_4("f4", "异常"),
+	fail_5("f5", "无可用支付渠道");
 
 	
 	private String code;

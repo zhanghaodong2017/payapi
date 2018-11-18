@@ -1,7 +1,5 @@
 package com.happy.payapi.dto;
 
-import java.math.BigDecimal;
-
 public class ReqDTO {
 
 	private String appid;

@@ -1,6 +1,9 @@
 package com.happy.payapi.service.impl;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,9 @@ import com.happy.payapi.dto.Errorcode;
 import com.happy.payapi.dto.PayChannelNo;
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.dto.RspDTO;
+import com.happy.payapi.entity.PayChannelInfo;
 import com.happy.payapi.entity.Paylog;
+import com.happy.payapi.mapper.PayChannelInfoMapper;
 import com.happy.payapi.mapper.PaylogMapper;
 import com.happy.payapi.service.PayService;
 import com.happy.payapi.service.strategy.GeneralStrategy;
@@ -27,6 +32,8 @@ public class PayServiceImpl implements PayService {
 	@Autowired
 	private PaylogMapper paylogMapper;
 	@Autowired
+	private PayChannelInfoMapper payChannelInfoMapper;
+	@Autowired
 	private Wx1001Strategy wx1001Strategy;
 	@Autowired
 	private Wx1002Strategy wx1002Strategy;
@@ -38,8 +45,13 @@ public class PayServiceImpl implements PayService {
 		fillPaylog(reqDTO, paylog);
 		RspDTO rspDTO = null;
 		try {
-			paylog.setPaychannelno(PayChannelNo.wx1001.getCode());
-			GeneralStrategy strategy = getStrategy(PayChannelNo.wx1001);
+			PayChannelInfo payChannelInfo = queryPaychannel(reqDTO.getPaytype());
+			if (payChannelInfo == null) {
+				throw new BizException(Errorcode.fail_5.getCode(), Errorcode.fail_5.getDesc());
+			}
+			PayChannelNo payChannelNo = PayChannelNo.getByCode(payChannelInfo.getPaychannelno());
+			paylog.setPaychannelno(payChannelInfo.getPaychannelno());
+			GeneralStrategy strategy = getStrategy(payChannelNo);
 			rspDTO = strategy.pay(reqDTO, paylog);
 			paylog.setPaystatus("1");// 支付结果；0成功,1支付中，2支付失败，3未支付
 		} catch (BizException e) {
@@ -57,6 +69,14 @@ public class PayServiceImpl implements PayService {
 			saveLog(paylog);
 		}
 		return rspDTO;
+	}
+
+	private PayChannelInfo queryPaychannel(String paytype) {
+		List<PayChannelInfo> channelInfos = payChannelInfoMapper.queryAvailable(paytype);
+		if (channelInfos == null || channelInfos.size() == 0) {
+			return null;
+		}
+		return channelInfos.get(0);
 	}
 
 	private void fillPaylog(ReqDTO reqDTO, Paylog paylog) {

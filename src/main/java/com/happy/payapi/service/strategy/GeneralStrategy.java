@@ -18,7 +18,7 @@ public abstract class GeneralStrategy {
 
 	private String getRandom(int n) {
 		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i <= n; i++) {
+		for (int i = 0; i < n; i++) {
 			int intFlag = (int) (Math.random() * 10);
 			builder.append(intFlag);
 		}

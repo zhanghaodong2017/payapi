@@ -29,4 +29,16 @@ public class CallBackController {
 			return "fail";
 		}
 	}
+
+	@RequestMapping(value = "/wx1002")
+	public String wx1002(Wx1001BackDTO backDTO) {
+		try {
+			logger.info("wx1002接收到数据：{}", new Gson().toJson(backDTO));
+			wx1001Callback.handleResult(backDTO);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
 }

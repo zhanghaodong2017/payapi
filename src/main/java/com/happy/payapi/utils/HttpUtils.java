@@ -41,6 +41,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author zhanghaodong
@@ -48,6 +50,8 @@ import org.apache.http.util.EntityUtils;
  * @desc 封装了httpcomponents的工具类,支持https
  */
 public class HttpUtils {
+	private static Logger logger = LoggerFactory.getLogger(HttpUtils.class);
+
 	private static PoolingHttpClientConnectionManager connMgr;
 	private static RequestConfig requestConfig;
 	private static final int MAX_TIMEOUT = 20000;// 20秒
@@ -155,25 +159,25 @@ public class HttpUtils {
 	 * @throws IOException
 	 */
 	public static String doGet(String url, Map<String, String> params, Map<String, String> headers) throws IOException {
-		int i = 0;
+		boolean flag = true;
+		StringBuffer param = new StringBuffer(url);
 		if (params != null) {
-			StringBuffer param = new StringBuffer();
 			for (String key : params.keySet()) {
-				if (i == 0)
+				if (flag) {
 					param.append("?");
-				else
+					flag = false;
+				} else
 					param.append("&");
 				param.append(key).append("=").append(encode(params.get(key)));
-				i++;
 			}
-			url += param;
 		}
+		logger.info("请求参数：{}", param.toString());
 		String result = null;
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		CloseableHttpResponse response = null;
 		HttpEntity entity = null;
 		try {
-			HttpGet httpGet = new HttpGet(url);
+			HttpGet httpGet = new HttpGet(param.toString());
 			if (headers != null) {
 				for (String headerName : headers.keySet()) {
 					httpGet.setHeader(headerName, headers.get(headerName));
@@ -224,8 +228,10 @@ public class HttpUtils {
 	/**
 	 * 发送 POST 请求（HTTP），K-V形式
 	 * 
-	 * @param apiUrl API接口URL
-	 * @param params 参数map
+	 * @param apiUrl
+	 *            API接口URL
+	 * @param params
+	 *            参数map
 	 * @return
 	 * @throws ConnectTimeoutException
 	 */
@@ -262,7 +268,8 @@ public class HttpUtils {
 	 * 发送 POST 请求（HTTP），JSON形式
 	 * 
 	 * @param apiUrl
-	 * @param content 内容
+	 * @param content
+	 *            内容
 	 * @return
 	 * @throws IOException
 	 */
@@ -304,7 +311,8 @@ public class HttpUtils {
 	 * 发送 POST 请求（HTTP），JSON形式
 	 * 
 	 * @param apiUrl
-	 * @param content 内容
+	 * @param content
+	 *            内容
 	 * @return
 	 * @throws IOException
 	 */
@@ -342,7 +350,8 @@ public class HttpUtils {
 		return bytes;
 	}
 
-	public static String doPost(String apiUrl, String content, String type, Map<String, String> headers) throws IOException {
+	public static String doPost(String apiUrl, String content, String type, Map<String, String> headers)
+			throws IOException {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		String httpStr = null;
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -381,7 +390,8 @@ public class HttpUtils {
 		return httpStr;
 	}
 
-	public static String doPost(String apiUrl, Map<String, String> params, Map<String, String> headers) throws IOException {
+	public static String doPost(String apiUrl, Map<String, String> params, Map<String, String> headers)
+			throws IOException {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		String httpStr = null;
 		HttpPost httpPost = new HttpPost(apiUrl);
@@ -418,12 +428,15 @@ public class HttpUtils {
 	/**
 	 * 发送 SSL POST 请求（HTTPS），K-V形式
 	 * 
-	 * @param apiUrl API接口URL
-	 * @param params 参数map
+	 * @param apiUrl
+	 *            API接口URL
+	 * @param params
+	 *            参数map
 	 * @return
 	 */
 	public static String doPostSSL(String apiUrl, Map<String, Object> params) {
-		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
+		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory())
+				.setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
 		HttpPost httpPost = new HttpPost(apiUrl);
 		CloseableHttpResponse response = null;
 		String httpStr = null;
@@ -463,12 +476,15 @@ public class HttpUtils {
 	/**
 	 * 发送 SSL POST 请求（HTTPS），JSON形式
 	 * 
-	 * @param apiUrl API接口URL
-	 * @param json JSON对象
+	 * @param apiUrl
+	 *            API接口URL
+	 * @param json
+	 *            JSON对象
 	 * @return
 	 */
 	public static String doPostSSL(String apiUrl, Object json) {
-		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
+		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory())
+				.setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
 		HttpPost httpPost = new HttpPost(apiUrl);
 		CloseableHttpResponse response = null;
 		String httpStr = null;
@@ -546,12 +562,16 @@ public class HttpUtils {
 	/**
 	 * 发送 SSL POST 请求（HTTPS），加载证书
 	 * 
-	 * @param apiUrl API接口URL
-	 * @param json JSON对象
+	 * @param apiUrl
+	 *            API接口URL
+	 * @param json
+	 *            JSON对象
 	 * @return
 	 */
-	public static String doPostSSL(String url, String content, String type, Map<String, String> headers, SSLConnectionSocketFactory sslsf) {
-		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
+	public static String doPostSSL(String url, String content, String type, Map<String, String> headers,
+			SSLConnectionSocketFactory sslsf) {
+		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory())
+				.setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
 		HttpPost httpPost = new HttpPost(url);
 		CloseableHttpResponse response = null;
 		String httpStr = null;
@@ -604,7 +624,8 @@ public class HttpUtils {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		String rsp = doGet("https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=6214855124526621&cardBinCheck=true");
+		String rsp = doGet(
+				"https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=6214855124526621&cardBinCheck=true");
 		System.out.println(rsp);
 	}
 }

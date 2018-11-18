@@ -22,8 +22,8 @@
 			<property name="suppressDate" value="true"></property>
 		</commentGenerator>
 		<!-- jdbc连接配置 -->
-		<jdbcConnection connectionURL="jdbc:mysql://111.231.115.86:3306/payapi"
-			driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+		<jdbcConnection connectionURL="jdbc:mysql://47.105.171.206:3308/payapi"
+			driverClass="com.mysql.jdbc.Driver" password="ApiPay_17" userId="root" />
 
 		<!-- 类型转换 -->
 		<javaTypeResolver>
@@ -43,7 +43,7 @@
 		<javaClientGenerator targetPackage="com.happy.payapi.mapper"
 			targetProject="payapi/src/main/java" type="XMLMAPPER" />
 
-		<table tableName="paylog" domainObjectName="Paylog"
+		<table tableName="paychannelinfo" domainObjectName="PayChannelInfo"
 			enableCountByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" enableUpdateByExample="false">
 			<!-- domainObjectName 指定生成的类的名字 -->
