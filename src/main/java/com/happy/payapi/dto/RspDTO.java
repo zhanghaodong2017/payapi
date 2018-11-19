@@ -5,7 +5,10 @@ public class RspDTO {
 	private String prepayid;
 	private String partnerid;
 	private String appid;
+	private String _package;
+	private String timestamp;
 	private String noncestr;
+	private String sign;
 
 	public String getOrderno() {
 		return orderno;
@@ -46,5 +49,31 @@ public class RspDTO {
 	public void setNoncestr(String noncestr) {
 		this.noncestr = noncestr;
 	}
+
+	public String get_package() {
+		return _package;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void set_package(String _package) {
+		this._package = _package;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	
+	
 
 }

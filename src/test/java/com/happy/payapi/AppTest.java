@@ -3,13 +3,13 @@ package com.happy.payapi;
 import com.google.gson.Gson;
 import com.happy.payapi.dto.ReqDTO;
 import com.happy.payapi.entity.Paylog;
-import com.happy.payapi.service.strategy.Wx1002Strategy;
+import com.happy.payapi.service.strategy.Ap1001Strategy;
 
 public class AppTest {
 	public static void main(String[] args) throws Exception {
-		Wx1002Strategy strategy = new Wx1002Strategy();
+		Ap1001Strategy strategy = new Ap1001Strategy();
 		ReqDTO reqDTO = new ReqDTO();
-		reqDTO.setAmount(100);
+		reqDTO.setAmount(1000);
 		reqDTO.setAppid("mytest");
 		reqDTO.setExt("test");
 		reqDTO.setGoodsDesc("描述");

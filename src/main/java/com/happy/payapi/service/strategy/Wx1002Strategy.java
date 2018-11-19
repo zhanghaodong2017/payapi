@@ -27,24 +27,21 @@ public class Wx1002Strategy extends GeneralStrategy {
 
 	public static final String payway = "weixin";
 	public static final String paytype = "weixin.app";
-//	public static final String appkey = "9139553db11c42c20da73d56722cade2";
-//	public static final String appid = "40020";
-	public static final String appkey = "5pOeGPqY8FdMWIRKx6ZQJrcLUanTjik7";
-	public static final String appid = "60005";
+	public static final String appkey = "bf37c5d5c60616cc82c5ea10b486e842";
+	public static final String appid = "40051";
 	public static final String notifyurl = "http://47.105.171.206:9999/callback/wx1002";
 	public static final String preorderApi = "http://api.daduci.com/";
 
 	@Override
 	public RspDTO pay(ReqDTO reqDTO, Paylog paylog) throws Exception {
 		RspDTO rspDTO = new RspDTO();
-		String orderno = appid + "_" + getOrderId(26);
+		String orderno = appid + "_" + getOrderId(20);
 		paylog.setOrderno(orderno);
 		rspDTO.setOrderno(orderno);
 
 		Map<String, String> params = getReqParam(reqDTO, orderno);
 		paylog.setReqdata(params.toString());
 		String res = sendGet(preorderApi, params);
-		logger.info("返回参数：{}", res);
 		paylog.setRspdata(res);
 		JSONObject jsonObject = JSONObject.parseObject(res);
 		String status = jsonObject.getString("status");
@@ -57,10 +54,16 @@ public class Wx1002Strategy extends GeneralStrategy {
 		String partnerid = data.getString("partnerid");
 		String _appid = data.getString("appid");
 		String noncestr = data.getString("noncestr");
+		String _package = data.getString("package");
+		String timestamp = data.getString("timestamp");
+		String sign = data.getString("sign");
 		rspDTO.setAppid(_appid);
 		rspDTO.setNoncestr(noncestr);
 		rspDTO.setPartnerid(partnerid);
 		rspDTO.setPrepayid(prepayid);
+		rspDTO.set_package(_package);
+		rspDTO.setTimestamp(timestamp);
+		rspDTO.setSign(sign);
 		return rspDTO;
 	}
 

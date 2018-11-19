@@ -21,16 +21,16 @@ import com.happy.payapi.utils.MD5Utill;
 import com.happy.payapi.utils.StringUtils;
 
 @Component
-public class Wx1001Strategy extends GeneralStrategy {
+public class Ap1001Strategy extends GeneralStrategy {
 
-	private static Logger logger = LoggerFactory.getLogger(Wx1001Strategy.class);
+	private static Logger logger = LoggerFactory.getLogger(Ap1001Strategy.class);
 
-	public static final String payway = "weixin";
-	public static final String paytype = "weixin.app";
-	public static final String appkey = "9139553db11c42c20da73d56722cade2";
-	public static final String appid = "40020";
-	public static final String notifyurl = "http://47.105.171.206:9999/callback/wx1001";
-	public static final String preorderApi = "http://api.daduci.com/";
+	public static final String payway = "zfb";
+	public static final String paytype = "zfb.h5";
+	public static final String appkey = "5pOeGPqY8FdMWIRKx6ZQJrcLUanTjik7";
+	public static final String appid = "60005";
+	public static final String notifyurl = "http://47.105.171.206:9999/callback/ap1001";
+	public static final String preorderApi = "http://pay.tkbest.cn";
 
 	@Override
 	public RspDTO pay(ReqDTO reqDTO, Paylog paylog) throws Exception {
@@ -42,6 +42,7 @@ public class Wx1001Strategy extends GeneralStrategy {
 		Map<String, String> params = getReqParam(reqDTO, orderno);
 		paylog.setReqdata(params.toString());
 		String res = sendGet(preorderApi, params);
+		logger.info("返回结果：{}", res);
 		paylog.setRspdata(res);
 		JSONObject jsonObject = JSONObject.parseObject(res);
 		String status = jsonObject.getString("status");

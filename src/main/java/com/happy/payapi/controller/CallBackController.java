@@ -41,4 +41,16 @@ public class CallBackController {
 			return "fail";
 		}
 	}
+
+	@RequestMapping(value = "/ap1001")
+	public String ap1001(Wx1001BackDTO backDTO) {
+		try {
+			logger.info("ap1001接收到数据：{}", new Gson().toJson(backDTO));
+			wx1001Callback.handleResult(backDTO);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
 }

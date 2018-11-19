@@ -20,7 +20,7 @@ import com.happy.payapi.utils.StringUtils;
 public class Wx1001Callback {
 	private static Logger logger = LoggerFactory.getLogger(Wx1001Callback.class);
 
-	public static final String appkey = "WEPQgf22dGk7376tF0VFzgs5TDCo11DH";
+	public static final String appkey = "9139553db11c42c20da73d56722cade2";
 
 	@Autowired
 	private PaylogMapper paylogMapper;
