@@ -2,6 +2,7 @@ package com.happy.payapi;
 
 import com.google.gson.Gson;
 import com.happy.payapi.dto.ReqDTO;
+import com.happy.payapi.dto.RspDTO;
 import com.happy.payapi.entity.Paylog;
 import com.happy.payapi.service.strategy.Ap1001Strategy;
 
@@ -17,7 +18,8 @@ public class AppTest {
 		reqDTO.setSource("1");
 		Paylog paylog = new Paylog();
 		try {
-			strategy.pay(reqDTO, paylog);
+			RspDTO rspDTO = strategy.pay(reqDTO, paylog);
+			System.out.println(new Gson().toJson(rspDTO));
 		} catch (Exception e) {
 		}
 		System.out.println(new Gson().toJson(paylog));

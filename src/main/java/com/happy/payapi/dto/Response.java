@@ -1,10 +1,13 @@
 package com.happy.payapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Response<T> {
 	private String code;
 
 	private String msg;
-
+	@JsonInclude(Include.NON_NULL)
 	private T data;
 
 	public String getCode() {

@@ -21,6 +21,7 @@ import com.happy.payapi.entity.Paylog;
 import com.happy.payapi.mapper.PayChannelInfoMapper;
 import com.happy.payapi.mapper.PaylogMapper;
 import com.happy.payapi.service.PayService;
+import com.happy.payapi.service.strategy.Ap1001Strategy;
 import com.happy.payapi.service.strategy.GeneralStrategy;
 import com.happy.payapi.service.strategy.Wx1001Strategy;
 import com.happy.payapi.service.strategy.Wx1002Strategy;
@@ -37,6 +38,8 @@ public class PayServiceImpl implements PayService {
 	private Wx1001Strategy wx1001Strategy;
 	@Autowired
 	private Wx1002Strategy wx1002Strategy;
+	@Autowired
+	private Ap1001Strategy ap1001Strategy;
 
 	@Override
 	public RspDTO pay(ReqDTO reqDTO) throws Exception {
@@ -60,6 +63,7 @@ public class PayServiceImpl implements PayService {
 			paylog.setErrormsg(e.getMsg());
 			throw e;
 		} catch (Exception e) {
+			e.printStackTrace();
 			paylog.setPaystatus("3");
 			paylog.setErrorcode(Errorcode.fail_4.getCode());
 			paylog.setErrormsg(e.getMessage());
@@ -107,7 +111,7 @@ public class PayServiceImpl implements PayService {
 				paylog.setErrormsg(errormsg.substring(0, 1024));
 			}
 			paylog.setCreatetime(new Date());
-			System.out.println(new Gson().toJson(paylog));
+//			System.out.println(new Gson().toJson(paylog));
 			paylogMapper.insert(paylog);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,6 +127,8 @@ public class PayServiceImpl implements PayService {
 			return wx1001Strategy;
 		case wx1002:
 			return wx1002Strategy;
+		case alipay1001:
+			return ap1001Strategy;
 		default:
 			return null;
 		}

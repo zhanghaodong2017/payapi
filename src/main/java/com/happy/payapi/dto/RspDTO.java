@@ -1,14 +1,27 @@
 package com.happy.payapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class RspDTO {
+	@JsonInclude(Include.NON_NULL) 
 	private String orderno;
+	@JsonInclude(Include.NON_NULL) 
 	private String prepayid;
+	@JsonInclude(Include.NON_NULL) 
 	private String partnerid;
+	@JsonInclude(Include.NON_NULL) 
 	private String appid;
+	@JsonInclude(Include.NON_NULL) 
 	private String _package;
+	@JsonInclude(Include.NON_NULL) 
 	private String timestamp;
+	@JsonInclude(Include.NON_NULL) 
 	private String noncestr;
+	@JsonInclude(Include.NON_NULL) 
 	private String sign;
+	@JsonInclude(Include.NON_NULL) 
+	private String payurl;
 
 	public String getOrderno() {
 		return orderno;
@@ -73,7 +86,13 @@ public class RspDTO {
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
-	
-	
+
+	public String getPayurl() {
+		return payurl;
+	}
+
+	public void setPayurl(String payurl) {
+		this.payurl = payurl;
+	}
 
 }

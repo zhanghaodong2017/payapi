@@ -30,7 +30,7 @@ public class Ap1001Strategy extends GeneralStrategy {
 	public static final String appkey = "5pOeGPqY8FdMWIRKx6ZQJrcLUanTjik7";
 	public static final String appid = "60005";
 	public static final String notifyurl = "http://47.105.171.206:9999/callback/ap1001";
-	public static final String preorderApi = "http://pay.tkbest.cn";
+	public static final String preorderApi = "http://pay.tkbest.cn/pay/request/payment";
 
 	@Override
 	public RspDTO pay(ReqDTO reqDTO, Paylog paylog) throws Exception {
@@ -50,21 +50,8 @@ public class Ap1001Strategy extends GeneralStrategy {
 		if (!"1".equals(status)) {
 			throw new BizException(Errorcode.fail_3.getCode(), msg);
 		}
-		JSONObject data = jsonObject.getJSONObject("data");
-		String prepayid = data.getString("prepayid");
-		String partnerid = data.getString("partnerid");
-		String _appid = data.getString("appid");
-		String noncestr = data.getString("noncestr");
-		String _package = data.getString("package");
-		String timestamp = data.getString("timestamp");
-		String sign = data.getString("sign");
-		rspDTO.setAppid(_appid);
-		rspDTO.setNoncestr(noncestr);
-		rspDTO.setPartnerid(partnerid);
-		rspDTO.setPrepayid(prepayid);
-		rspDTO.set_package(_package);
-		rspDTO.setTimestamp(timestamp);
-		rspDTO.setSign(sign);
+		String payurl = jsonObject.getString("payurl");
+		rspDTO.setPayurl(payurl);
 		return rspDTO;
 	}
 
